@@ -1,0 +1,91 @@
+﻿@model IEnumerable<OnlineShop27._01._22.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="row" id="gallery">
+    <!-- col-1 -->
+    <div class="col-md-9" style="padding:0px 15px">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+            <div class="col-md-6">
+                <div class="card" style="width: 100%"; margin-bottom: 10px">
+                    <img src="~/@item.Image" class="card-img-top" alt="...">
+
+                    <div class="card-body" style="text-align:center">
+                        <h5 class="card-title">@item.Name</h5>
+                        <h3 style="color:red">@item.Price</h3>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+
+                </div>
+            </div>
+            }
+
+        </div>
+    </div>
+    <!-- col-2-->
+    <div class="col-md-3" style="padding: 15px; border: 1px solid silver">
+        <h5>фильтри</h5>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAvaileble)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Producer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsAvaileble)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.ProductType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Producer.ProducerName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
